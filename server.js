@@ -2,6 +2,7 @@
 /**
  * Module dependencies.
  */
+require('coffee-script-redux/register');
 
 var express = require('express');
 var http = require('http');

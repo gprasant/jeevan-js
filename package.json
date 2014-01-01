@@ -6,7 +6,8 @@
   "dependencies": {
     "express": "3.4.0",
     "jade": "*",
-    "stylus": "*"
+    "stylus": "*",
+    "coffee-script-redux": "~2.0.0-beta7"
   },
   "devDependencies": {
     "node-dev": "~2.1.4"
