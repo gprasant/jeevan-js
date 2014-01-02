@@ -29,6 +29,9 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+// apps
+require('./apps/units/routes')(app);
+
 app.get('/', function(req, res){
   res.render('index', {title: "Express"});
 });
