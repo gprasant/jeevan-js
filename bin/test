@@ -1,1 +1,1 @@
-node_modules/.bin/mocha --compilers coffee:coffee-script-redux/register test/**/*.coffee
+node_modules/.bin/mocha --compilers coffee:coffee-script-redux/register test/*.coffee test/**/*.coffee
