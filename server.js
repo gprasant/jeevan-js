@@ -7,6 +7,7 @@ require('coffee-script-redux/register');
 var express = require('express');
 var http = require('http');
 var path = require('path');
+var pgAdapter = require('./apps/pg-adapter');
 
 var app = express();
 
@@ -30,7 +31,7 @@ if ('development' == app.get('env')) {
 }
 
 // apps
-require('./apps/units/routes')(app);
+require('./apps/units/routes')(app, pgAdapter);
 
 app.get('/', function(req, res){
   res.render('index', {title: "Express"});
@@ -39,3 +40,5 @@ app.get('/', function(req, res){
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+module.exports = app;

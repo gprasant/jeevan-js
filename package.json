@@ -13,6 +13,9 @@
   "devDependencies": {
     "node-dev": "~2.1.4",
     "mocha": "~1.16.2",
-    "should": "~2.1.1"
+    "should": "~2.1.1",
+    "request": "~2.33.0",
+    "bond": "~0.1.5",
+    "bondjs": "~1.0.0"
   }
 }
