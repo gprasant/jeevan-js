@@ -26,7 +26,7 @@ class CordBloodUnit
     pgAdapter = require "../pg-adapter" # require this here because otherwise, pgAdapter is set to {}
     pgAdapter.getUnits page, (err, units) ->
       if err
-        callback new Error "Could not get Units from the DB"
+        callback err
         return
       else
         callback null, units

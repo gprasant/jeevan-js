@@ -4,6 +4,8 @@ units = (app, pgAdapter) ->
   app.get '/units/:page?', (req, res) ->
     page = parseInt(req.params.page || '1')
     CordBloodUnit.getSamples page, (err, units) ->
+      if err
+        throw err
       res.render "#{__dirname}/views/list",
         units: units
 
