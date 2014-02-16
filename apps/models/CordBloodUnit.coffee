@@ -1,3 +1,5 @@
+pgAdapter = require "../pg-adapter"
+
 class CordBloodUnit
   constructor: ({@hlaA1, @hlaA2, @hlaB1, @hlaB2, @drb1, @drb2, @hlaC1, @hlaC2, @dqb1, @dqb2}) ->
 
@@ -18,6 +20,16 @@ class CordBloodUnit
       matchCount++
 
     matchCount
+
+  # Class Methods
+  @getSamples: (page, callback) ->
+    pgAdapter = require "../pg-adapter" # require this here because otherwise, pgAdapter is set to {}
+    pgAdapter.getUnits page, (err, units) ->
+      if err
+        callback new Error "Could not get Units from the DB"
+        return
+      else
+        callback null, units
 
 
 module.exports = CordBloodUnit

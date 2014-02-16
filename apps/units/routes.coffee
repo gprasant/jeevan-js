@@ -1,10 +1,15 @@
+CordBloodUnit = require "../models/CordBloodUnit"
+
 units = (app, pgAdapter) ->
-  app.get '/units', (req, res) ->
-    res.render "#{__dirname}/views/list"
+  app.get '/units/:page?', (req, res) ->
+    page = parseInt(req.params.page || '1')
+    CordBloodUnit.getSamples page, (err, units) ->
+      res.render "#{__dirname}/views/list",
+        units: units
 
   app.get '/units.json/:page?', (req, res) ->
     page = parseInt(req.params.page || '1')
-    pgAdapter.getUnits 15, page, (err, units) ->
+    pgAdapter.getUnits page, (err, units) ->
       res.json units
 
 

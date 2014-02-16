@@ -14,7 +14,7 @@ pgAdapter = () ->
   runQuery: (query, cb) ->
     pg.connect CONN_STRING, (err, client, done) ->
       if err
-        cb new Error "Error connectint to database", err
+        cb err
         return
       else
         client.query query, (err, result) ->
@@ -23,7 +23,7 @@ pgAdapter = () ->
             return cb err
           cb(null, result.rows)
 
-  getUnits: (count, page, cb) ->
+  getUnits: ( page, cb) ->
     offset_count = PAGE_SIZE * (page - 1)
     pg.connect CONN_STRING, (err, client, done) ->
       if err
@@ -36,5 +36,6 @@ pgAdapter = () ->
         for row in result.rows
           units.push new CordBloodUnit(row)
         cb(null, units)
+
 
 module.exports = pgAdapter()

@@ -1,2 +1,40 @@
 h1
-  | List samples
+  | List Cord Blood Units
+
+table
+  thead
+    tr
+      td HLA A1
+      td HLA A2
+      td HLA B1
+      td HLA B2
+      td DRB 1
+      td DRB 2
+      td HLA C1
+      td HLA C2
+      td DQB 1
+      td DQB 2
+
+  tbody
+    each unit in units
+      tr
+        td
+          = unit.hlaA1
+        td
+          = unit.hlaA2
+        td
+          = unit.hlaB1
+        td
+          = unit.hlaB2
+        td
+          = unit.drb1
+        td
+          = unit.drb2
+        td
+          = unit.hlaC1
+        td
+          = unit.hlaC2
+        td
+          = unit.dqb1
+        td
+          = unit.dqb2
