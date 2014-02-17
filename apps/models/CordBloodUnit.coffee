@@ -23,7 +23,7 @@ class CordBloodUnit
 
   # Class Methods
   @getSamples: (page, callback) ->
-    pgAdapter = require "../pg-adapter" # require this here because otherwise, pgAdapter is set to {}
+    pgAdapter = require "../pg-adapter" # require this here again because otherwise, pgAdapter is set to {}
     pgAdapter.getUnits page, (err, units) ->
       if err
         callback err
