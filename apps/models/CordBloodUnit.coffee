@@ -22,6 +22,7 @@ class CordBloodUnit
     matchCount
 
   # Class Methods
+  # use dynatable ajax : http://stackoverflow.com/questions/21297192/load-remote-json-from-dynatable
   @getSamples: (page, callback) ->
     pgAdapter = require "../pg-adapter" # require this here again because otherwise, pgAdapter is set to {}
     pgAdapter.getUnits page, (err, units) ->

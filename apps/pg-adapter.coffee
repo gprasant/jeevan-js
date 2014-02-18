@@ -10,6 +10,8 @@ GET_UNITS_QUERY = """SELECT hla_a1 as "hlaA1", hla_a2 as "hlaA2", \
                     dqb_1 as "dqb1", dqb_2 as "dqb2"
                     FROM cordbloodunits LIMIT $1 OFFSET $2"""
 
+ROW_COUNT_QUERY = "SELECT COUNT(*) FROM CORDBLOODUNITS"
+
 pgAdapter = () ->
   runQuery: (query, cb) ->
     pg.connect CONN_STRING, (err, client, done) ->
@@ -37,5 +39,15 @@ pgAdapter = () ->
           units.push new CordBloodUnit(row)
         cb(null, units)
 
+  getRowCount: (callback) ->
+    pg.connect CONN_STRING, (err, client, done) ->
+      if err
+        throw err
+
+      client.query ROW_COUNT_QUERY, (err, result) ->
+        done()
+        if err
+          throw err
+        callback( null, parseInt(result.rows[0].count) )
 
 module.exports = pgAdapter()
