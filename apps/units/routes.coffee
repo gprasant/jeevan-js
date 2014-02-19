@@ -13,12 +13,15 @@ units = (app, pgAdapter) ->
       units: []
 
   app.get '/units.json/:page?', (req, res) ->
-    page = parseInt(req.params.page || '1')
-    pgAdapter.getUnits page, (err, units) ->
+    offset = parseInt( req.query.offset || '0' )
+    page = parseInt(req.params.page || req.query.page || '1')
+    perPage = parseInt( req.query.perPage || '10')
+
+    pgAdapter.getUnits page, perPage, offset, (err, units) ->
       pgAdapter.getRowCount (err, totalCount) ->
         result =
           "records": units
-          "queryRecordCount": units.length
+          "queryRecordCount": totalCount # for now, since filtering is not yet implemented.
           "totalRecordCount": totalCount
         res.json result
 

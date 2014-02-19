@@ -3,9 +3,10 @@ jQuery(function () {
   return $('table#samples').dynatable({
     dataset: {
       ajax: true,
-      ajaxUrl: '/units.json/1',
+      ajaxUrl: '/units.json/',
       ajaxOnLoad: true,
-      records: []
+      records: [],
+      perPage: 20
     }
   });
 });

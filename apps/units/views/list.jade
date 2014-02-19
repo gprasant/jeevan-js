@@ -7,20 +7,19 @@ block content
   table#samples
     thead
       tr
+        th(data-dynatable-column="id")    ID
         th(data-dynatable-column="hlaA1") HLA A1
         th(data-dynatable-column="hlaA2") HLA A2
         th(data-dynatable-column="hlaB1") HLA B1
         th(data-dynatable-column="hlaB2") HLA B2
         th(data-dynatable-column="drb1") DRB 1
         th(data-dynatable-column="drb2") DRB 2
-        th(data-dynatable-column="hlaC1") HLA C1
-        th(data-dynatable-column="hlaC2") HLA C2
-        th(data-dynatable-column="dqb1") DQB 1
-        th(data-dynatable-column="dqb2") DQB 2
 
     tbody
       each unit in units
         tr
+          td
+            = unit.id
           td
             = unit.hlaA1
           td
@@ -33,11 +32,3 @@ block content
             = unit.drb1
           td
             = unit.drb2
-          td
-            = unit.hlaC1
-          td
-            = unit.hlaC2
-          td
-            = unit.dqb1
-          td
-            = unit.dqb2
