@@ -32,6 +32,7 @@ if ('development' == app.get('env')) {
 
 // apps
 require('./apps/units/routes')(app, pgAdapter);
+require('./apps/authentication/routes')(app);
 
 app.get('/', function(req, res){
   res.render('index', {title: "Express"});
