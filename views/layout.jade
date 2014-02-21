@@ -4,7 +4,13 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/jquery.dynatable.css')
+
   body
+    - if(session.messages)
+      //- p My session value is "#{session.messages[0]["message"]}"
+      each msg in session.messages
+        p= msg["message"]
+      - session.messages = null
     block content
 
     script(src='/javascripts/jquery-1.11.0.js')

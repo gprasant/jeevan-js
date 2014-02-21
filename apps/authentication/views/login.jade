@@ -1,12 +1,15 @@
-h2 Login
+extends ../../../views/layout
 
-form(method="post", action="/sessions/new")
-  ul
-    li
-      label(for="username") Username (email)
-      input(type="text", name="username", id="username")
-    li
-      label(for="password") Password
-      input(type="password", name="password", id="password")
-    li
-      input(type="submit", value="Login")
+block content
+  h2 Login
+
+  form(method="post", action="/sessions")
+    ul
+      li
+        label(for="username") Username (email)
+        input(type="text", name="username", id="username")
+      li
+        label(for="password") Password
+        input(type="password", name="password", id="password")
+      li
+        input(type="submit", value="Login")

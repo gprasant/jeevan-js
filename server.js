@@ -11,6 +11,9 @@ var pgAdapter = require('./apps/pg-adapter');
 
 var app = express();
 
+
+
+
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
@@ -21,9 +24,18 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
+
+//custom middlewarez. This block should be after express.session() but before app.router
+app.use(function(req, res, next){
+  res.locals.session = req.session;
+  next();
+});
+
 app.use(app.router);
 app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 // development only
 if ('development' == app.get('env')) {
