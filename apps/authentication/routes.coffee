@@ -3,8 +3,10 @@ routes = (app) ->
     res.render "#{__dirname}/views/login"
 
   app.post '/sessions/new', (req, res) ->
-    console.log("Username :: ", req.body.username)
-    console.log("Password :: ", req.body.password)
-    res.send("Received : " + req.body.username + " => " + req.body.password)
+    if ("admin" is req.body.username and "geeone" is req.body.password)
+      req.cookies.username = req.body.username
+      res.redirect "/units"
+    else
+      res.redirect "/login"
 
 module.exports = routes
