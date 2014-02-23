@@ -1,5 +1,6 @@
 pg = require 'pg'
 CordBloodUnit = require './models/CordBloodUnit'
+utils = require "./utils"
 
 CONN_STRING = "postgres://pguruprasad@127.0.0.1:5432/jeevan"
 GET_UNITS_QUERY = """SELECT id as "id", hla_a1 as "hlaA1", hla_a2 as "hlaA2", \
@@ -7,7 +8,8 @@ GET_UNITS_QUERY = """SELECT id as "id", hla_a1 as "hlaA1", hla_a2 as "hlaA2", \
                     drb_1 as "drb1", drb_2 as "drb2", \
                     hla_c1 as "hlaC1", hla_c2 as "hlaC2", \
                     dqb_1 as "dqb1", dqb_2 as "dqb2"
-                    FROM cordbloodunits LIMIT $1 OFFSET $2"""
+                    FROM cordbloodunits
+                    LIMIT $1 OFFSET $2"""
 PAGE_SIZE = 10
 ROW_COUNT_QUERY = "SELECT COUNT(*) FROM CORDBLOODUNITS"
 
@@ -24,11 +26,13 @@ pgAdapter = () ->
             return cb err
           cb(null, result.rows)
 
-  getUnits: ( page, perPage, offset, cb) ->
+  getUnits: ( page, perPage, offset, filter, cb) ->
     pg.connect CONN_STRING, (err, client, done) ->
       if err
         cb err
-      client.query GET_UNITS_QUERY, [perPage, offset], (err, result) ->
+      whereclause = utils.whereClause(filter)
+
+      client.query GET_UNITS_QUERY, [ perPage, offset], (err, result) ->
         done() # return client to the pool
         if err
           throw err

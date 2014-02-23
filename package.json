@@ -8,7 +8,8 @@
     "jade": "*",
     "stylus": "*",
     "coffee-script-redux": "~2.0.0-beta7",
-    "pg": "~2.10.0"
+    "pg": "~2.10.0",
+    "underscore": "~1.6.0"
   },
   "devDependencies": {
     "node-dev": "~2.1.4",
