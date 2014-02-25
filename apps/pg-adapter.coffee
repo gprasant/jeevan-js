@@ -43,15 +43,16 @@ pgAdapter = () ->
           units.push new CordBloodUnit(row)
         cb(null, units)
 
-  getRowCount: (callback) ->
+  getRowCount: (filter, callback) ->
     pg.connect CONN_STRING, (err, client, done) ->
       if err
         throw err
-
-      client.query ROW_COUNT_QUERY, (err, result) ->
+      whereClause = utils.whereClause(filter)
+      queries = "#{ROW_COUNT_QUERY} ; #{ROW_COUNT_QUERY} #{whereClause}"
+      client.query queries, (err, result) ->
         done()
         if err
           throw err
-        callback( null, parseInt(result.rows[0].count) )
+        callback( null, parseInt(result.rows[0].count), parseInt(result.rows[1].count) )
 
 module.exports = pgAdapter()

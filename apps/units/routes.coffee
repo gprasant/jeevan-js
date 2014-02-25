@@ -25,10 +25,10 @@ units = (app, pgAdapter) ->
     filter = utils.numberize( req.query.queries ) || {}
 
     pgAdapter.getUnits page, perPage, offset, filter,  (err, units) ->
-      pgAdapter.getRowCount (err, totalCount) ->
+      pgAdapter.getRowCount filter, (err, totalCount, filterCount) ->
         result =
           "records": units
-          "queryRecordCount": totalCount # for now, since filtering is not yet implemented.
+          "queryRecordCount": filterCount
           "totalRecordCount": totalCount
         res.json result
 
