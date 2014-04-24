@@ -2,7 +2,7 @@ pg = require 'pg'
 CordBloodUnit = require './models/CordBloodUnit'
 utils = require "./utils"
 
-CONN_STRING = "postgres://pguruprasad@127.0.0.1:5432/jeevan"
+CONN_STRING = "postgres://postgres@127.0.0.1:5432/jeevan"
 GET_UNITS_QUERY = """SELECT id as "id", hla_a1 as "hlaA1", hla_a2 as "hlaA2", \
                     hla_b1 as "hlaB1", hla_b2 as "hlaB2", \
                     drb_1 as "drb1", drb_2 as "drb2", \
