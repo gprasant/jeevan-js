@@ -22,7 +22,7 @@ units = (app, pgAdapter) ->
     page = parseInt(req.params.page || req.query.page || '1')
     perPage = parseInt( req.query.perPage || '10')
 
-    filter = utils.numberize( req.query.queries ) || {}
+    filter = req.query.queries || {}
 
     pgAdapter.getUnits page, perPage, offset, filter,  (err, units) ->
       pgAdapter.getRowCount filter, (err, totalCount, filterCount) ->
