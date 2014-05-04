@@ -1,0 +1,24 @@
+#! /usr/bin/env sh
+echo "pushing to deploy host"
+git push deploy master
+
+echo "Connecting to deploy host ... "
+ssh UM7nQtrS1@180.179.208.130
+
+echo "cd jeevan-js ..."
+cd jeevan-js
+
+
+echo "Checkking for node processes ..."
+NODE_PID=`pgrep node`
+
+echo "Found node process running at PID " NODE_PID
+
+echo "stopping node process ..."
+kill $NODE_PID
+
+echo "restarting node process ..."
+PORT=8000 nohup node server.js > output.log &
+
+NODE_PID=`pgrep node`
+echo "New node process running at PID " NODE_PID
