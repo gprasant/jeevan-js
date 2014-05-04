@@ -1,18 +1,17 @@
 #! /usr/bin/env sh
-echo "pushing to deploy host"
-git push deploy master
-
 echo "Connecting to deploy host ... "
 ssh UM7nQtrS1@180.179.208.130
 
 echo "cd jeevan-js ..."
 cd jeevan-js
 
+echo "pulling from origin"
+git pull
 
 echo "Checkking for node processes ..."
 NODE_PID=`pgrep node`
 
-echo "Found node process running at PID " NODE_PID
+echo "Found node process running at PID " $NODE_PID
 
 echo "stopping node process ..."
 kill $NODE_PID
