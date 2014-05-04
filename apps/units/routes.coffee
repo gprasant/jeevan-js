@@ -16,6 +16,7 @@ units = (app, pgAdapter) ->
     page = parseInt(req.params.page || '1')
     res.render "#{__dirname}/views/list",
       units: []
+      title: "Units"
 
   app.get '/units.json/:page?', (req, res) ->
     offset = parseInt( req.query.offset || '0' )
